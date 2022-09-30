@@ -44,11 +44,17 @@ Found 13 outliers among 100 measurements (13.00%)
 ## Compute units assuming 33 ns per CU
 
 edwards curve validation: 111 CU
+
 edwrds add: 331 CU
+
 edwards subtract: 329 CU
+
 edwards multiply: 1753 CU
 
 ristretto curve validation: 117 CU
+
 ristretto add: 367 CU
+
 ristretto subtract: 366 CU
+
 ristretto multiply: 1804 CU
