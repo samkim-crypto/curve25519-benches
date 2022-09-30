@@ -1,3 +1,5 @@
+## Benchmarks
+
 edwards_curve_validation                                                                             
                         time:   [3.6296 µs 3.6472 µs 3.6637 µs]
 Found 6 outliers among 100 measurements (6.00%)
@@ -38,3 +40,15 @@ Found 13 outliers among 100 measurements (13.00%)
   9 (9.00%) low mild
   2 (2.00%) high mild
   2 (2.00%) high severe
+
+## Compute units assuming 33 ns per CU
+
+edwards curve validation: 111 CU
+edwrds add: 331 CU
+edwards subtract: 329 CU
+edwards multiply: 1753 CU
+
+ristretto curve validation: 117 CU
+ristretto add: 367 CU
+ristretto subtract: 366 CU
+ristretto multiply: 1804 CU
