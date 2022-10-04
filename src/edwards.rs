@@ -7,7 +7,7 @@ use bytemuck::{Pod, Zeroable};
 use curve25519_dalek::{
     edwards::{CompressedEdwardsY, EdwardsPoint},
     scalar::Scalar,
-    traits::VartimeMultiscalarMul,
+    traits::MultiscalarMul,
 };
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Pod, Zeroable)]
@@ -104,13 +104,14 @@ impl MultiScalarMultiplication for PodEdwardsPoint {
     type Point = Self;
 
     fn multiscalar_multiply(scalars: &[PodScalar], points: &[Self]) -> Option<Self> {
-        EdwardsPoint::optional_multiscalar_mul(
+        let result = EdwardsPoint::multiscalar_mul(
             scalars.iter().map(Scalar::from),
             points
                 .iter()
-                .map(|point| EdwardsPoint::try_from(point).ok()),
-        )
-        .map(|result| PodEdwardsPoint::from(&result))
+                .map(|point| EdwardsPoint::try_from(point).unwrap()),
+        );
+
+        Some(PodEdwardsPoint::from(&result))
     }
 }
 

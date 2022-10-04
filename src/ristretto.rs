@@ -7,7 +7,7 @@ use bytemuck::{Pod, Zeroable};
 use curve25519_dalek::{
     ristretto::{CompressedRistretto, RistrettoPoint},
     scalar::Scalar,
-    traits::VartimeMultiscalarMul,
+    traits::MultiscalarMul,
 };
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Pod, Zeroable)]
@@ -107,13 +107,14 @@ impl MultiScalarMultiplication for PodRistrettoPoint {
     type Point = Self;
 
     fn multiscalar_multiply(scalars: &[PodScalar], points: &[Self]) -> Option<Self> {
-        RistrettoPoint::optional_multiscalar_mul(
+        let result = RistrettoPoint::multiscalar_mul(
             scalars.iter().map(Scalar::from),
             points
                 .iter()
-                .map(|point| RistrettoPoint::try_from(point).ok()),
-        )
-        .map(|result| PodRistrettoPoint::from(&result))
+                .map(|point| RistrettoPoint::try_from(point).unwrap()),
+        );
+
+        Some(PodRistrettoPoint::from(&result))
     }
 }
 
