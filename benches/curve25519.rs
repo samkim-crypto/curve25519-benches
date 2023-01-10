@@ -458,14 +458,14 @@ pub fn ristretto_msm_5(c: &mut Criterion) {
 
 criterion_group!(
     benches,
-    // edwards_curve_validation,
-    // edwards_add,
-    // edwards_subtract,
-    // edwards_multiply,
-    // ristretto_curve_validation,
-    // ristretto_add,
-    // ristretto_subtract,
-    // ristretto_multiply
+    edwards_curve_validation,
+    edwards_add,
+    edwards_subtract,
+    edwards_multiply,
+    ristretto_curve_validation,
+    ristretto_add,
+    ristretto_subtract,
+    ristretto_multiply,
     edwards_msm_1,
     edwards_msm_2,
     edwards_msm_3,
